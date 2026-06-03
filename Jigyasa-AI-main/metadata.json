@@ -1,0 +1,6 @@
+{
+  "name": "Jigyasa AI",
+  "description": "India's first AI-powered curiosity and future-readiness platform for school students (Classes LKG-12) featuring hyper-local scenario engines, devil's advocate dialogues, consequence simulators, interactive debate arenas, teacher dashboards, and skill passports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
