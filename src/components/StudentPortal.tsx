@@ -22,6 +22,12 @@ interface Props {
     language: string;
     tier: Tier;
   };
+  classChallenges?: any[];
+  studyPlans?: any[];
+  notifications?: any[];
+  onReadNotification?: (id: string) => void;
+  tourSimulateAction?: any;
+  onClearTourAction?: () => void;
 }
 
 const INDIAN_STATES = [
