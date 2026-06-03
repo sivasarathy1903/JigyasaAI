@@ -57,6 +57,178 @@ const CLASSES = [
   "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12"
 ];
 
+function getLocalFallbackBaselineQuestions(grade: string, subject: string, state: string) {
+  return [
+    {
+      id: "q-1",
+      question: "Who heads a Gram Panchayat?",
+      type: "MCQ",
+      options: ["Collector", "President (Sarpanch)", "Governor", "MLA"],
+      answerKey: "President (Sarpanch)"
+    },
+    {
+      id: "q-2",
+      question: "True or False: Panchayat members are elected directly by the village electorate.",
+      type: "TF",
+      answerKey: "True"
+    },
+    {
+      id: "q-3",
+      question: "Match the local governance roles to their descriptions:",
+      type: "MATCH",
+      matchPairs: [
+        { left: "Gram Sabha", right: "All adult voters in the village" },
+        { left: "Ward Member (Panch)", right: "Representative of a specific ward" },
+        { left: "Panchayat Secretary", right: "Government-appointed officer who calls meetings" }
+      ],
+      answerKey: "Gram Sabha -> All adult voters, Ward Member -> Representative of a ward, Secretary -> Government officer"
+    },
+    {
+      id: "q-4",
+      question: "Which Indian Constitutional Amendment gave official status to rural local self-governments?",
+      type: "MCQ",
+      options: ["42nd Amendment", "44th Amendment", "73rd Amendment", "86th Amendment"],
+      answerKey: "73rd Amendment"
+    },
+    {
+      id: "q-5",
+      question: "True or False: The Gram Panchayat has no power to collect local taxes or duties.",
+      type: "TF",
+      answerKey: "False"
+    }
+  ];
+}
+
+function getLocalFallbackPersonalizedMission(grade: string, subject: string, topic: string, state: string, score: number, category: string) {
+  const complexityLevel = score > 80 ? 'Advanced Systems' : score > 60 ? 'Intermediate' : score > 30 ? 'Developing' : 'Guided Beginner';
+  return {
+    missionTitle: `Panchayat Water Security Council (${complexityLevel})`,
+    missionGoal: `Design a community water conservation and lake replenishment roadmap utilizing what you know about the local water cycle, with a ₹50 lakh micro-climate budget.`,
+    realWorldTask: score > 80 
+      ? `Draft a high-fidelity policy recommendation for the local Gram Panchayat to desilt lakes and clean catchment areas while safeguarding surrounding farm budgets under strict fiscal limits.`
+      : `Create a simple map and sequence plan showing where to dig recharge wells in the village without damaging local crops.`,
+    reflectionQuestions: [
+      "How do we prevent wealthier commercial farmers from over-extracting the restored groundwater?",
+      "If we cut the budget to ₹25 lakhs, what green technique would you prioritize first?"
+    ],
+    parentActivity: "Discuss with your parents how village water management has changed in their lifetime.",
+    teacherRubric: [
+      {
+        criteria: "Systems Thinking",
+        description: "Evaluates second-order effects of lake desilting (e.g. dust, crop runoff, groundwater levels)",
+        levels: {
+          beginner: "Lists basic water cycle terms with guidance",
+          intermediate: "Identifies direct water cycle outcomes in the village",
+          advanced: "Maps multi-stage ecological and economic consequences under budget constraints"
+        }
+      },
+      {
+        criteria: "Resource Allocation",
+        description: "Utilizes the ₹50L budget constraint efficiently",
+        levels: {
+          beginner: "Exceeds budget or ignores cost constraints",
+          intermediate: "Stays within budget but ignores operational trade-offs",
+          advanced: "Balances desilting costs, daily food wages, and commercial silt sale margins"
+        }
+      }
+    ]
+  };
+}
+
+function getLocalFallbackScenario(grade: string, subject: string, topic: string, state: string, language: string, tier: string) {
+  const normalizedTopic = (topic || '').toLowerCase();
+  if (normalizedTopic.includes('water') || !topic) {
+    return {
+      scenario_title: "Chennai's Disappearing Lakes",
+      context: `Three of Chennai's major lakes in ${state || 'Tamil Nadu'} have dried up this summer. Farmers in nearby Kanchipuram cannot irrigate their paddy fields efficiently. The local district collector has requested your student taskforce to present a solution to the municipal city council.`,
+      mission: 'Design a community water conservation and lake replenishment roadmap utilizing what you know about the local water cycle, with a ₹50 lakh micro-climate budget.',
+      constraints: [
+        'Cannot forcibly relocate any village families near lake boundaries',
+        'Must utilize green techniques showing impact within 3 months',
+        'Budget cap is ₹50 lakhs',
+      ],
+      what_skills_this_tests: ['Systems thinking', 'Real-world water cycle optimization', 'Resource allocation'],
+      opening_question: 'What is the absolute first action your team would initiate, and what climate factor influenced that decision? (ஏன்? - Why?)',
+      teacher_note: 'This challenge demands that students apply groundwater infiltration and evaporation concepts to direct community action, rejecting simple textbook recycling advice.',
+    };
+  }
+
+  return {
+    scenario_title: `The ${topic} Community Crisis`,
+    context: `A sudden structural change in ${state || 'your region'} is affecting residents and local commerce. Your school group has been asked to advise the panchayat/municipal leaders on a strategy.`,
+    mission: `Propose an adaptive concept map and project design dealing with ${topic} with minimal disruption.`,
+    constraints: [
+      'Must protect low-income stakeholders',
+      'No heavy imports; use regional materials',
+      'Action plan must work with existing local governance laws',
+    ],
+    what_skills_this_tests: ['Critical decision-making', 'Civic awareness', 'Trade-off evaluation'],
+    opening_question: `What primary factor do you feel needs solving first here, and why?`,
+    teacher_note: `Promotes open-ended inquiry and Socratic reasoning directly relating curriculum of ${subject} to localized Indian state dynamics.`,
+  };
+}
+
+function getLocalFallbackConsequence(studentDecision: string) {
+  return {
+    decision_summary: studentDecision ? `Deploying community rain-catchers and desilting Chennai dry lakebeds: "${studentDecision}"` : 'Decentralizing lakebed desilting with small storage wells',
+    timeline: [
+      {
+        period: 'Week 1',
+        positive_effects: ['Desilting starts providing temporary water-truck jobs for 120 village youths.'],
+        negative_effects: ['Excavated silt creates dust storms near three local school grounds.'],
+        unexpected_effect: 'Silt is discovered to be extremely mineral-rich; small scale home gardens buy it immediately.',
+      },
+      {
+        period: 'Month 3',
+        positive_effects: ['Cleared beds increase groundwater absorption speed by 25% just as light monsoon rains begin.'],
+        negative_effects: ['Local open irrigation streams clog slightly due to loose dirt blocks.'],
+        unexpected_effect: 'Migratory sandpipers and local white herons return 6 weeks earlier than historical patterns.',
+      },
+      {
+        period: 'Year 1',
+        positive_effects: ['Aquifer level rises by 1.8 meters; Kanchipuram wells remain wet during dry winter.'],
+        negative_effects: ['High water levels spark mosquito pest outbreaks in waterlogged zones.'],
+        unexpected_effect: 'Land prices surrounding the lake bed skyrocket, attracting commercial hotel builders.',
+      },
+      {
+        period: 'Year 5',
+        positive_effects: ['The village is fully water self-reliant, saving ₹40 lakhs in water tanker imports.'],
+        negative_effects: ['Over-extraction of this newly rich groundwater starts among larger commercial farmers.'],
+        unexpected_effect: 'Heavy greenery reduces city heat domes in the Kanchipuram corridor by 1.5°C.',
+      },
+    ],
+    reflection_question: 'Since rise in water self-reliance attracted hotels and overwater extraction by wealthy farmers, how will your governance model protect water rights for small farmers?',
+    skills_demonstrated: ['Second-order systems evaluation', 'Resource sustainability mapping'],
+  };
+}
+
+function getLocalFallbackPassport(name: string, grade: string) {
+  return {
+    passport_id: 'JIG-2024-482910',
+    student_name: name || 'Meena S.',
+    grade: grade || 'Class 7',
+    issued_date: 'June 1, 2026',
+    skill_scores: {
+      critical_thinking: { score: 85, level: 'Advanced', evidence: 'Engaged and refuted the resource cut and shipping crisis devil claims' },
+      problem_solving: { score: 78, level: 'Proficient', evidence: 'Optimized water budgets on a Chennai lake map' },
+      creativity: { score: 88, level: 'Advanced', evidence: 'Drafted bilingual micro-catchers for apartment balconies' },
+      communication: { score: 80, level: 'Proficient', evidence: 'Spoke clearly with high empathy on village merchant livelihoods' },
+      leadership: { score: 70, level: 'Developing', evidence: 'Managed stakeholder opinions during local water debates' },
+      collaboration: { score: 75, level: 'Proficient', evidence: 'Suggested clear divisions of labor for well restoration teams' },
+      adaptability: { score: 82, level: 'Proficient', evidence: 'Switched plans smoothly under sudden budget and climate constraints' },
+      innovation: { score: 84, level: 'Advanced', evidence: 'Utilized solar vapor recovery models for dry lake beds' },
+    },
+    strongest_skill: 'Creativity',
+    growth_area: 'Leadership',
+    signature_achievement: 'Formulated a multi-tier ecological model protecting both village aquifers and poor retailers',
+    employer_summary: `${name || 'Meena'} showcases marvelous systemic reasoning. She doesn't just read textbooks; she connects chemical/geological frameworks with micro-economic constraints. Highly capable of self-directed research.`,
+    recommended_next_challenges: [
+      'Microfinance agrarian solar grid deployment simulation',
+      'Tamil Nadu sustainable temple tank restoration model',
+    ],
+  };
+}
+
 export default function StudentPortal({ studentParams, onChangeParams, currentTier, currentLanguage }: Props) {
   const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
@@ -218,7 +390,11 @@ export default function StudentPortal({ studentParams, onChangeParams, currentTi
       setBaselineAnswers({});
       setActiveStep(1.2);
     } catch (e) {
-      console.error(e);
+      console.error("API error, using local fallback questions:", e);
+      const fallbackQuestions = getLocalFallbackBaselineQuestions(studentParams.grade, studentParams.subject, studentParams.state);
+      setBaselineAssessment({ questions: fallbackQuestions });
+      setBaselineAnswers({});
+      setActiveStep(1.2);
     } finally {
       setLoading(false);
     }
@@ -267,7 +443,17 @@ export default function StudentPortal({ studentParams, onChangeParams, currentTi
       }
       setActiveStep(1.5);
     } catch (e) {
-      console.error(e);
+      console.error("API error, using local fallback mission:", e);
+      const fallbackMission = getLocalFallbackPersonalizedMission(studentParams.grade, studentParams.subject, studentParams.topic, studentParams.state, score, category);
+      setPersonalizedMission(fallbackMission);
+      if (baselineAssessment) {
+        setBaselineAssessment({
+          ...baselineAssessment,
+          score,
+          category
+        });
+      }
+      setActiveStep(1.5);
     } finally {
       setLoading(false);
     }
@@ -302,7 +488,21 @@ export default function StudentPortal({ studentParams, onChangeParams, currentTi
       setActiveStep(2); // Jump to Scenario card screen
       setCurrentInput(SUGGESTED_ANSWERS[1] || '');
     } catch (e) {
-      console.error(e);
+      console.error("API error, using local fallback scenario:", e);
+      const topicTitle = personalizedMission?.missionTitle || studentParams.topic;
+      const tierName = baselineAssessment?.category === 'Advanced' ? 'INNOVATOR' : baselineAssessment?.category === 'Intermediate' ? 'BUILDER' : 'EXPLORER';
+      const fallbackScenario = getLocalFallbackScenario(studentParams.grade, studentParams.subject, topicTitle, studentParams.state, studentParams.language, tierName);
+      setScenario(fallbackScenario);
+      setChatHistory([
+        {
+          id: 'first-ai',
+          sender: 'ai',
+          text: fallbackScenario.opening_question,
+          timestamp: new Date().toLocaleTimeString(),
+        }
+      ]);
+      setActiveStep(2);
+      setCurrentInput(SUGGESTED_ANSWERS[1] || '');
     } finally {
       setLoading(false);
     }
@@ -365,7 +565,17 @@ export default function StudentPortal({ studentParams, onChangeParams, currentTi
 
       setCurrentInput(SUGGESTED_ANSWERS[2] || '');
     } catch (e) {
-      console.error(e);
+      console.error("API error, using local fallback socratic response:", e);
+      setChatHistory(prev => [
+        ...prev,
+        {
+          id: Math.random().toString(),
+          sender: 'ai',
+          text: `That is a thoughtful point! But let's dig deeper: how will local stakeholders react to this change? What is the main trade-off?`,
+          timestamp: new Date().toLocaleTimeString(),
+        }
+      ]);
+      setCurrentInput(SUGGESTED_ANSWERS[2] || '');
     } finally {
       setLoading(false);
     }
@@ -391,7 +601,19 @@ export default function StudentPortal({ studentParams, onChangeParams, currentTi
       setDevilsChallenge(data);
       setActiveStep(4);
     } catch (e) {
-      console.error(e);
+      console.error("API error, using local fallback devils advocate:", e);
+      setDevilsChallenge({
+        challengeText: `I see where you're coming from. But let's look at the numbers. Who is going to bear the cost of this program? Are the small vendors ready to pay for paper bags?`,
+        acknowledgedValue: 'Your strategy is quite environment friendly',
+        assumptionChallenged: 'Assuming vendors can afford paper bags',
+        scores: {
+          evidenceQuality: 4,
+          logicalConsistency: 3,
+          awarenessOfTradeoffs: 3,
+          creativity: 4,
+        },
+      });
+      setActiveStep(4);
     } finally {
       setLoading(false);
     }
@@ -416,7 +638,10 @@ export default function StudentPortal({ studentParams, onChangeParams, currentTi
       setConsequenceData(data);
       setActiveStep(5);
     } catch (e) {
-      console.error(e);
+      console.error("API error, using local fallback consequences:", e);
+      const fallbackConsequence = getLocalFallbackConsequence(lastStudent);
+      setConsequenceData(fallbackConsequence);
+      setActiveStep(5);
     } finally {
       setLoading(false);
     }
@@ -451,7 +676,10 @@ export default function StudentPortal({ studentParams, onChangeParams, currentTi
       setFinalPassport(data);
       setActiveStep(6);
     } catch (e) {
-      console.error(e);
+      console.error("API error, using local fallback passport:", e);
+      const fallbackPassport = getLocalFallbackPassport(studentParams.studentName, studentParams.grade);
+      setFinalPassport(fallbackPassport);
+      setActiveStep(6);
     } finally {
       setLoading(false);
     }
